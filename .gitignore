@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Tooling caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# Build artefacts
+build/
+dist/
+*.egg-info/
+
+# Local output (example report in examples/demo_output is intentionally kept)
+/output/
+
+# Editors / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp

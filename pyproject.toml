@@ -1,0 +1,73 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "arqenode-dataflow"
+version = "1.0.0"
+description = "Локальная обработка CSV/XLSX с продажами и формирование Excel-отчёта"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Arqenode" }]
+keywords = ["excel", "csv", "automation", "reporting", "openpyxl"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Operating System :: OS Independent",
+  "Topic :: Office/Business :: Financial",
+]
+dependencies = ["openpyxl>=3.1,<4"]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8,<10",
+  "pytest-cov>=5,<8",
+  "ruff>=0.6,<1",
+]
+
+[project.scripts]
+arqenode-dataflow = "arqenode_dataflow.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["arqenode_dataflow*"]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+addopts = [
+  "--strict-markers",
+  "--strict-config",
+  "--cov=arqenode_dataflow",
+  "--cov-report=term-missing:skip-covered",
+  "--cov-report=xml",
+  "--cov-fail-under=80",
+]
+filterwarnings = ["error"]
+
+[tool.coverage.run]
+branch = true
+source = ["arqenode_dataflow"]
+
+[tool.coverage.report]
+fail_under = 80
+show_missing = true
+skip_covered = true
+exclude_lines = [
+  "pragma: no cover",
+  "if __name__ == .__main__.:",
+  "raise NotImplementedError",
+]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+ignore = ["E501"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
